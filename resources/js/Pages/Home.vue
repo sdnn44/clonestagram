@@ -31,7 +31,7 @@ onMounted(() => {
     <div class="container">
       <Carousel
         v-model="currentSlide"
-        class="max-w-[700px] mx-auto"
+        class="carousel-wrapper"
         :items-to-show="wWidth >= 768 ? 8 : 6"
         :items-to-scroll="4"
         :wrap-around="true"
@@ -98,158 +98,153 @@ onMounted(() => {
 
 <style >
 .container {
-  margin-left: auto; 
-  margin-right: auto; 
-  padding-left: 2rem; 
+  padding-left: 0;
 }
 
 @media (min-width: 768px) {
   .container {
-    padding-left: 80px; 
+    padding-left: 80px;
   }
 }
 
 @media (min-width: 1024px) {
   .container {
-    padding-left: 0; 
+    padding-left: 0;
   }
+}
+
+.carousel-wrapper {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .slide-link {
   position: relative;
-  margin-left: auto; 
-  margin-right: auto; 
-  text-align: center; 
-  margin-top: 1rem; 
-  padding-left: 0.5rem; 
-  padding-right: 0.5rem; 
-  cursor: pointer; 
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-top: 1rem;
+  text-align: center;
+  cursor: pointer;
 }
 
 .background-circle {
   position: absolute;
-  z-index: -1; 
-  top: -5px; 
-  left: 4px; 
-  width: 64px; 
-  height: 64px; 
-  border-radius: 50%; 
+  z-index: -1;
+  top: -5px;
+  left: 4px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
   transform: rotate(45deg);
-  background: linear-gradient(
-    to top,
-    #fde047,
-    #d946ef,
-    #ef4444
-  ); 
-  filter: contrast(1.3); 
+  background: linear-gradient(to top, #fde047, #d946ef, #ef4444);
+  filter: contrast(1.3);
 }
 
 .inner-circle {
-  border-radius: 50%; 
-  margin-left: 3px; 
-  margin-top: 3px; 
-  width: 58px; 
+  border-radius: 50%;
+  margin-left: 3px;
+  margin-top: 3px;
+  width: 58px;
   height: 58px;
-  background-color: white; 
+  background-color: white;
 }
 
 .user-image {
-  border-radius: 50%; 
-  width: 56px; 
-  height: 56px; 
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
   margin-top: -1px;
   margin-left: -5px;
 }
 
 .user-name {
-  font-size: 0.75rem; 
-  margin-top: 0.5rem; 
-  width: 60px; 
-  white-space: nowrap; 
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  width: 60px;
+  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
 }
 
 #Posts {
-  padding-left: 3rem;
-  padding-right: 3rem;
-  max-width: 600px;
-  margin-left: auto; 
-  margin-right: auto; 
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
   margin-top: 2.5rem;
+  max-width: 600px;
 }
 
 .post-container {
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between; 
-  padding-top: 0.5rem; 
-  padding-bottom: 0.5rem; 
+  display: flex;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .user-info {
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
 }
 
 .user-link {
-  display: flex; 
+  display: flex;
   align-items: center;
 }
 
 .user-post-image {
-  border-radius: 50%; 
-  width: 38px; 
-  height: 38px; 
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
 }
 
 .user-post-name {
-  margin-left: 1rem; 
+  margin-left: 1rem;
   font-weight: 800;
-  font-size: 0.9375rem; 
+  font-size: 0.9375rem;
 }
 
 .post-time {
-  display: flex; 
-  align-items: center; 
-  font-size: 0.9375rem; 
-  color: #6b7280; 
+  display: flex;
+  align-items: center;
+  font-size: 0.9375rem;
+  color: #6b7280;
 }
 
 .dot-separator {
-  margin-top: -1.25rem; 
+  margin-top: -1.25rem;
   margin-left: 0.5rem;
-  margin-right: 0.3125rem; 
-  font-size: 2.1875rem; 
+  margin-right: 0.3125rem;
+  font-size: 2.1875rem;
 }
 
 .post-image-container {
-  background-color: black; 
-  border-radius: 0.5rem; 
-  width: 100%; 
-  min-height: 25rem; 
-  display: flex; 
+  background-color: black;
+  border-radius: 0.5rem;
+  width: 100%;
+  min-height: 25rem;
+  display: flex;
   align-items: center;
 }
 
 .post-image {
-  margin-left: auto; 
-  margin-right: auto; 
-  width: 100%; 
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 .likes-section {
-  color: black; 
-  font-weight: 800; 
-  padding-top: 0.25rem; 
-  padding-bottom: 0.25rem; 
+  color: black;
+  font-weight: 800;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .comments-button {
-  color: #6b7280; 
-  font-weight: 600; 
-  padding-top: 0.25rem; 
-  padding-bottom: 0.25rem; 
+  color: #6b7280;
+  font-weight: 600;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   border: none;
 }
 .user-like-name {
@@ -257,6 +252,6 @@ onMounted(() => {
 }
 
 .padding-bottom {
-  padding-bottom: 5rem; 
+  padding-bottom: 5rem;
 }
 </style>

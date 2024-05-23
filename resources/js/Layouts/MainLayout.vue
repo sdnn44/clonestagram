@@ -40,6 +40,7 @@ let showCreatePost = ref(false);
         </div>
       </div>
     </div>
+
     <div v-if="$page.url !== '/'" id="top-nav-user">
       <Link href="/" class="user-link">
         <ChevronLeft :size="30" class="chevron-left" />
@@ -53,7 +54,7 @@ let showCreatePost = ref(false);
         <img class="large-logo" src="/logo-default.png" alt="Large Logo" />
       </Link>
 
-      <div class="px-3">
+      <div class="items-spacing">
         <Link href="/">
           <MenuItem iconString="Home" class="menu-item" />
         </Link>
@@ -90,7 +91,7 @@ let showCreatePost = ref(false);
         id="SuggestionsSection"
         class="suggestions-section"
       >
-        <a href="/" class="user-profile-link">
+        <Link href="/" class="user-profile-link">
           <div class="user-info">
             <img
               class="user-image"
@@ -103,7 +104,7 @@ let showCreatePost = ref(false);
             </div>
           </div>
           <button class="switch-button">Switch</button>
-        </a>
+        </Link>
 
         <div class="suggestions-header">
           <div class="suggestions-title">Suggestions for you</div>
@@ -127,7 +128,7 @@ let showCreatePost = ref(false);
           </a>
         </div> -->
 
-        <a href="/" class="user-profile-link">
+        <Link href="/" class="user-profile-link">
           <div class="user-info">
             <img
               class="user-image"
@@ -140,7 +141,7 @@ let showCreatePost = ref(false);
             </div>
           </div>
           <button class="switch-button">Switch</button>
-        </a>
+        </Link>
 
         <div class="footer">
           <div class="footer-links">
@@ -198,20 +199,20 @@ let showCreatePost = ref(false);
 <style scoped>
 .wrapper {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 #top-nav {
-  position: fixed;
-  width: 100%;
-  z-index: 20;
   display: block;
-  background: white;
+  position: fixed;
+  z-index: 50;
+  border-bottom-width: 1px;
+  width: 100%;
+  background-color: #ffffff;
   height: 61px;
-  border-bottom: 1px solid rgb(103, 101, 101);
 }
 
-@media (768px <= width) {
+@media (min-width: 768px) {
   #top-nav {
     display: none;
   }
@@ -219,8 +220,8 @@ let showCreatePost = ref(false);
 
 #top-nav-items {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   height: 100%;
 }
 
@@ -239,9 +240,9 @@ let showCreatePost = ref(false);
 #search-items {
   display: flex;
   align-items: center;
+  border-radius: 0.5rem;
   width: 100%;
   background-color: #f3f4f6;
-  border-radius: 0.5rem;
 }
 
 .search-icon {
@@ -267,17 +268,17 @@ input {
 }
 
 #top-nav-user {
-  position: fixed;
   display: flex;
-  align-items: center;
+  position: fixed;
+  z-index: 50;
   justify-content: space-between;
-  z-index: 20;
+  align-items: center;
+  border-bottom-width: 1px;
   width: 100%;
-  background: #fff;
+  background-color: #ffffff;
   height: 61px;
-  border-bottom: rgb(103, 101, 101);
 }
-@media (768px <= width) {
+@media (min-width: 768px) {
   #top-nav-user {
     display: none;
   }
@@ -291,11 +292,13 @@ input {
 }
 
 .side-nav {
-  position: fixed;
-  height: 100%;
-  background-color: white;
-  border-right: 1px solid #d1d5db;
   display: none;
+  position: fixed;
+  border-right-width: 1px;
+  height: 100%;
+  background-color: #ffffff;
+  width: 80px;
+  z-index: 30;
 }
 
 @media (min-width: 768px) {
@@ -304,14 +307,14 @@ input {
   }
 }
 
-.side-nav {
-  width: 80px;
-}
-
 @media (min-width: 1280px) {
   .side-nav {
     width: 280px;
   }
+}
+.side-nav .items-spacing {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .small-logo {
@@ -354,28 +357,26 @@ input {
 
 .main-container {
   display: flex;
-  justify-content: space-between;
-  background-color: white;
-  height: 100%;
-  width: calc(100% - 280px);
-  padding-left: 280px;
   overflow: auto;
+  height: 100%;
+  background-color: #ffffff;
+  width: calc(100%-280px);
 }
 
-@media (max-width: 1279px) {
+@media (min-width: 1280px) {
   .main-container {
+    padding-left: 280px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-container {
+    justify-content: space-between;
     padding-left: 100px;
   }
 }
 
-@media (max-width: 1024px) {
-  .main-container {
-    padding-left: 0;
-  }
-}
-
 .content-container {
-  margin: 0 auto;
   padding-top: 5rem;
 }
 
@@ -400,23 +401,23 @@ input {
 }
 
 .suggestions-section {
-  width: 33.333333%; 
   display: none;
-  color: #000000; 
-  margin-top: 2.5rem; 
-  margin-left: 1.2rem;
+  margin-top: 2.5rem;
+  margin-left: 1.5rem;
+  color: #000000;
 }
 
 @media (min-width: 1024px) {
   .suggestions-section {
     display: block;
+    width: 33.333333%;
   }
 }
 
 .user-profile-link {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   max-width: 300px;
 }
 
@@ -426,9 +427,9 @@ input {
 }
 
 .user-image {
-  border-radius: 9999px; 
-  width: 58px; 
-  height: 58px; 
+  border-radius: 9999px;
+  width: 58px;
+  height: 58px;
   z-index: 10;
 }
 
@@ -437,25 +438,25 @@ input {
 }
 
 .user-name {
-  color: #000000; 
-  font-weight: 800; 
+  color: #000000;
+  font-weight: 800;
 }
 
 .user-username {
-  color: #6b7280; 
-  font-weight: 800; 
-  font-size: 0.875rem; 
+  color: #6b7280;
+  font-weight: 800;
+  font-size: 0.875rem;
 }
 
 .switch-button {
-  color: #3b82f6; 
-  font-size: 0.75rem; 
-  font-weight: 800; 
+  color: #3b82f6;
+  font-size: 0.75rem;
+  font-weight: 800;
   transition: color 0.3s;
 }
 
 .switch-button:hover {
-  color: #1f2937; 
+  color: #1f2937;
 }
 
 .suggestions-header {
@@ -463,69 +464,69 @@ input {
   align-items: center;
   justify-content: space-between;
   max-width: 300px;
-  padding-top: 0.75rem; 
-  padding-bottom: 0.75rem; 
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .suggestions-title {
   color: #6b7280;
-  font-weight: 800; 
+  font-weight: 800;
 }
 
 /* See All Button */
 .see-all-button {
   color: #3b82f6; /* equivalent to text-blue-500 */
   font-size: 0.75rem; /* equivalent to text-xs */
-  font-weight: 800; 
+  font-weight: 800;
   transition: color 0.3s;
 }
 
 .see-all-button:hover {
-  color: #1f2937; 
+  color: #1f2937;
 }
 
 .suggested-user {
-  margin-bottom: 0.5rem; 
+  margin-bottom: 0.5rem;
 }
 
 .suggested-user-image {
-  border-radius: 9999px; 
+  border-radius: 9999px;
   width: 37px;
-  height: 37px; 
+  height: 37px;
   z-index: 10;
 }
 
 .suggested-text {
-  color: #6b7280; 
-  font-weight: 800; 
-  font-size: 0.875rem; 
+  color: #6b7280;
+  font-weight: 800;
+  font-size: 0.875rem;
 }
 
 .follow-button {
   color: #3b82f6;
-  font-size: 0.75rem; 
-  font-weight: 800; 
+  font-size: 0.75rem;
+  font-weight: 800;
   transition: color 0.3s;
 }
 
 .follow-button:hover {
-  color: #1f2937; 
+  color: #1f2937;
 }
 
 .footer {
   max-width: 300px;
-  margin-top: 1.25rem; 
+  margin-top: 1.25rem;
 }
 
 .footer-links {
-  font-size: 0.875rem; 
-  color: #9ca3af; 
+  font-size: 0.875rem;
+  color: #9ca3af;
 }
 
 .footer-text {
   text-align: left;
-  color: #9ca3af; 
-  margin-top: 1rem; 
+  color: #9ca3af;
+  margin-top: 1rem;
 }
 .bottom-nav {
   position: fixed;
@@ -536,13 +537,13 @@ input {
   align-items: center;
   justify-content: space-around;
   background-color: #ffffff;
-  border-top: 1px solid #d1d5db; 
+  border-top: 1px solid #d1d5db;
   padding: 0.5rem 0;
 }
 
 @media (min-width: 768px) {
   .bottom-nav {
-    display: none; 
+    display: none;
   }
 }
 
@@ -551,8 +552,8 @@ input {
 }
 
 .profile-img {
-  border-radius: 9999px; 
-  width: 30px; 
+  border-radius: 9999px;
+  width: 30px;
   cursor: pointer;
 }
 </style>
