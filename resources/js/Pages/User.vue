@@ -366,9 +366,9 @@ const getUploadedImage = (e) => {
 }
 
 .profile-stat-label {
-  color: #9ca3af; /* text-gray-400 */
+  color: #9ca3af; 
   font-weight: 600;
-  margin-top: -0.375rem; /* -mt-1.5 */
+  margin-top: -0.375rem;
   text-align: center;
 }
 
@@ -377,7 +377,7 @@ const getUploadedImage = (e) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid #d1d5db; /* border-t-gray-300 */
+  border-top: 1px solid #d1d5db; 
 }
 
 .profile-action-button {
@@ -388,7 +388,7 @@ const getUploadedImage = (e) => {
 }
 
 .profile-action-button.active {
-  border-top: 1px solid #111827; /* border-t-gray-900 */
+  border-top: 1px solid #111827; 
 }
 .content-section {
   display: flex;

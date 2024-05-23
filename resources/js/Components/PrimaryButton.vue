@@ -1,7 +1,33 @@
+<script setup>
+defineProps({
+  type: {
+    type: String,
+    default: "submit",
+  },
+});
+</script>
+
 <template>
-    <button
-        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
-    >
-        <slot />
-    </button>
+  <button class="button-overlay">
+    <slot />
+  </button>
 </template>
+
+<style scoped>
+button {
+    border: none;
+}
+.button-overlay {
+  padding: 0.375rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: #0095f6;
+}
+.button-overlay:hover {
+  background: #2150fa;
+}
+</style>

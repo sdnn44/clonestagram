@@ -1,103 +1,152 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import { Head, Link, useForm } from "@inertiajs/vue3";
 
 const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
+  name: "",
+  email: "",
+  password: "",
+  password_confirmation: "",
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
+  form.post(route("register"), {
+    onFinish: () => form.reset("password", "password_confirmation"),
+  });
 };
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Register" />
+  <GuestLayout>
+    <Head title="Register" />
+    <img width="200" src="/logo-default.png" />
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="name" value="Name" />
+    <form @submit.prevent="submit">
+      <div>
+        <TextInput
+          id="name"
+          type="text"
+          class="text-input"
+          v-model="form.name"
+          required
+          autofocus
+          autocomplete="name"
+          placeholder="Name"
+        />
+        <InputError class="input-error" :message="form.errors.name" />
+      </div>
 
-                <TextInput
-                    id="name"
-                    type="text"
-                    class="mt-1 block w-full"
-                    v-model="form.name"
-                    required
-                    autofocus
-                    autocomplete="name"
-                />
+      <div class="input-container">
+        <TextInput
+          id="email"
+          type="email"
+          class="text-input"
+          v-model="form.email"
+          required
+          autocomplete="username"
+          placeholder="E-mail"
+        />
+        <InputError class="input-error" :message="form.errors.email" />
+      </div>
 
-                <InputError class="mt-2" :message="form.errors.name" />
-            </div>
+      <div class="input-container">
+        <TextInput
+          id="password"
+          type="password"
+          class="text-input"
+          v-model="form.password"
+          required
+          autocomplete="new-password"
+          placeholder="Password"
+        />
+        <InputError class="input-error" :message="form.errors.password" />
+      </div>
 
-            <div class="mt-4">
-                <InputLabel for="email" value="Email" />
+      <div class="input-container">
+        <TextInput
+          id="password_confirmation"
+          type="password"
+          class="text-input"
+          v-model="form.password_confirmation"
+          required
+          autocomplete="new-password"
+          placeholder="New password"
+        />
+        <InputError
+          class="input-error"
+          :message="form.errors.password_confirmation"
+        />
+      </div>
 
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-
-                <TextInput
-                    id="password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password_confirmation"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password_confirmation" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link
-                    :href="route('login')"
-                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                    Already registered?
-                </Link>
-
-                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
-                </PrimaryButton>
-            </div>
-        </form>
-    </GuestLayout>
+      <PrimaryButton
+        class="primary-button"
+        :class="{ processing: form.processing }"
+        :disabled="form.processing"
+      >
+        Register
+      </PrimaryButton>
+      <div class="form-footer">
+        <Link :href="route('login')" class="link"> Already registered? </Link>
+      </div>
+    </form>
+  </GuestLayout>
 </template>
+
+<style scoped>
+img {
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.text-input {
+  margin-top: 0.25rem;
+  display: block;
+  width: 100%;
+}
+
+.input-error {
+  margin-top: 0.5rem;
+}
+
+.input-container {
+  margin-top: 1rem;
+}
+
+.form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.link {
+  text-decoration: underline;
+  font-size: 0.875rem;
+  color: #4a5568;
+  border-radius: 0.375rem;
+  outline: none;
+}
+
+.link:hover {
+  color: #1a202c;
+}
+
+.link:focus {
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 2px #6366f1, 0 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.primary-button {
+  margin-top: 2rem;
+  margin-left: 1rem;
+}
+
+.primary-button.processing {
+  opacity: 0.25;
+}
+</style>
