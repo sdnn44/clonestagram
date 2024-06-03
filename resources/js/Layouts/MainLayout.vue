@@ -99,8 +99,8 @@ let showCreatePost = ref(false);
               alt="User Image"
             />
             <div class="user-details">
-              <div class="user-name">Name</div>
-              <div class="user-username">Name</div>
+              <div class="user-name">imtrappe</div>
+              <div class="user-username">Łukii</div>
             </div>
           </div>
           <button class="switch-button">Switch</button>
@@ -136,8 +136,8 @@ let showCreatePost = ref(false);
               alt="User Image"
             />
             <div class="user-details">
-              <div class="user-name">Name</div>
-              <div class="user-username">Name</div>
+              <div class="user-name">imtrappe</div>
+              <div class="user-username">Łukii</div>
             </div>
           </div>
           <button class="switch-button">Switch</button>
@@ -192,7 +192,7 @@ let showCreatePost = ref(false);
   </div>
   <CreatePostOverlay
     v-if="showCreatePost"
-    @close="($event) => (showCreatePost = false)"
+    @close="showCreatePost = false"
   />
 </template>
 
@@ -200,6 +200,7 @@ let showCreatePost = ref(false);
 .wrapper {
   width: 100%;
   height: 100vh;
+  overflow: hidden;
 }
 
 #top-nav {
@@ -357,7 +358,6 @@ input {
 
 .main-container {
   display: flex;
-  overflow: auto;
   height: 100%;
   background-color: #ffffff;
   width: calc(100%-280px);
@@ -404,6 +404,7 @@ input {
   display: none;
   margin-top: 2.5rem;
   margin-left: 1.5rem;
+  padding: 1rem;
   color: #000000;
 }
 
@@ -438,13 +439,15 @@ input {
 }
 
 .user-name {
+  text-decoration: none;
   color: #000000;
   font-weight: 800;
+  font-size: 0.875rem;
 }
 
 .user-username {
+  text-decoration: none;
   color: #6b7280;
-  font-weight: 800;
   font-size: 0.875rem;
 }
 
@@ -472,11 +475,9 @@ input {
   color: #6b7280;
   font-weight: 800;
 }
-
-/* See All Button */
 .see-all-button {
-  color: #3b82f6; /* equivalent to text-blue-500 */
-  font-size: 0.75rem; /* equivalent to text-xs */
+  color: #3b82f6;
+  font-size: 0.75rem; 
   font-weight: 800;
   transition: color 0.3s;
 }

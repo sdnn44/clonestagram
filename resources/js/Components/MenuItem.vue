@@ -80,7 +80,7 @@ if (iconString.value === "Log out") icon = Menu;
 .nav-text {
   display: none;
   color: #000000;
-  font-weight: 800;
+  font-weight: 500;
   font-size: 18px;
   padding-left: 0.5rem;
   margin-top: 0.125rem;

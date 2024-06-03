@@ -4,6 +4,7 @@ import { Head, Link, router } from "@inertiajs/vue3";
 
 import MainLayout from "@/Layouts/MainLayout.vue";
 import LikesSection from "@/Components/LikesSection.vue";
+import ShowPostOverlay from "@/Components/ShowPostOverlay.vue";
 
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
@@ -81,10 +82,7 @@ onMounted(() => {
         <div class="likes-section">12 likes</div>
         <div><span class="user-like-name">post.user.name </span> post.text</div>
         <button
-          @click="
-            currentPost = post;
-            openOverlay = true;
-          "
+          @click="$event => openOverlay = true"
           class="comments-button"
         >
           View all 4 comments
@@ -94,6 +92,11 @@ onMounted(() => {
       <div class="padding-bottom"></div>
     </div>
   </MainLayout>
+  <ShowPostOverlay 
+    v-if="openOverlay"
+    :post="currentPost"
+    @closeOverlay="$event => openOverlay = false"
+  />
 </template>
 
 <style >
@@ -168,8 +171,8 @@ onMounted(() => {
 }
 
 #Posts {
-  padding-left: 1.2rem;
-  padding-right: 1.2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
   margin-top: 2.5rem;
   max-width: 600px;
 }
