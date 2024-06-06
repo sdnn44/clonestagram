@@ -88,11 +88,10 @@ onMounted(() => {
           View all 4 comments
         </button>
       </div>
-
       <div class="padding-bottom"></div>
     </div>
   </MainLayout>
-  <ShowPostOverlay 
+  <ShowPostOverlay
     v-if="openOverlay"
     :post="currentPost"
     @closeOverlay="$event => openOverlay = false"
@@ -249,6 +248,7 @@ onMounted(() => {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   border: none;
+  cursor: pointer;
 }
 .user-like-name {
   font-weight: 600;

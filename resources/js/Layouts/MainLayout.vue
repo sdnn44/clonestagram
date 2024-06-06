@@ -359,6 +359,7 @@ input {
 .main-container {
   display: flex;
   height: 100%;
+  overflow: auto;
   background-color: #ffffff;
   width: calc(100%-280px);
 }
