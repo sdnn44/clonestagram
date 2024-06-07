@@ -59,7 +59,7 @@ const emit = defineEmits(["like"]);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 12px;
+  padding-top: 5px;
 }
 
 .like-button {

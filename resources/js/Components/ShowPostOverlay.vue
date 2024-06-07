@@ -49,8 +49,8 @@ const textareaInput = (e) => {
                 <div>post.created_at</div>
               </div>
             </div>
-            <button>
-              <DotsHorizontal class="cursor-pointer" :size="27" />
+            <button class="button-dots">
+              <DotsHorizontal :size="27" />
             </button>
           </div>
 
@@ -64,109 +64,28 @@ const textareaInput = (e) => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <!--
+
             <div class="comment-padding">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                  <img
-                    class="rounded-full w-[38px] h-[38px]"
-                    src="/user-logo.png"
-                  />
-                  <div class="ml-4 font-extrabold text-[15px]">
+              <div class="comment-wrapper">
+                <div class="comment">
+                  <img src="/user-logo.png" />
+                  <div class="comment-username">
                     comment.user.name
                     <span class="font-light text-gray-700 text-sm">
                       post.created_at
                     </span>
                   </div>
                 </div>
-
-                <DotsHorizontal :size="27" />
-              </div>
-
-              <div class="text-[13px] pl-[55px]">comment.text</div>
-            </div>
-
-            <div class="pb-16 md:hidden"></div>
-          </div>
-
-          <LikesSection class="likes-section" />
-
-          <div
-            class="absolute flex border bottom-0 w-full max-h-[200px] bg-white overflow-auto"
-          >
-            <EmoticonHappyOutline class="pl-3 pt-[10px]" :size="30" />
-            <textarea
-              ref="textarea"
-              :oninput="textareaInput"
-              v-model="comment"
-              placeholder="Add a comment..."
-              rows="1"
-              class="w-full border-0 mt-2 mb-2 text-sm z-50 focus:ring-0 text-gray-600 text-[18px]"
-            ></textarea>
-            <button
-              v-if="comment"
-              class="text-blue-600 font-extrabold pr-4"
-              @click="
-                $emit('addComment', { post, user, comment });
-                comment = '';
-              "
-            >
-              Post
-            </button>
-          </div>
-        </div> -->
-      </div>
-    </div>
-  </div>
-  <!-- 
-  <div id="OverlaySection" class="overlay-container">
-    <button class="close-overlay" @click="$emit('closeOverlay')">
-      <Close :size="27" fillColor="#FFFFFF" />
-    </button>
-
-    <div class="">
-      <div class="">
-        <div class="">
-          <img class="post-image" src="/user-logo.png" />
-        </div>
-        <div class="">
-          <div class="header">
-            <div class="header-content">
-              <img class="user-image" src="/user-logo.png" />
-              <div class="user-name">username</div>
-              <div class="post-date">
-                <span>.</span>
-                <div>post.created_at</div>
-              </div>
-            </div>
-            <button>
-              <DotsHorizontal class="cursor-pointer" :size="27" />
-            </button>
-          </div>
-          <div class="comments-section">
-            <div class="">
-              <img class="post-user-image" src="/user-logo.png" />
-              <div class="post-text">
-                <span class="post-user-name">username</span>
-                <span>post text</span>
-              </div>
-            </div>
-            <div class="comment">
-              <div class="comment-header">
-                <div class="comment-user-info">
-                  <img class="comment-user-image" src="/user-logo.png" />
-                  <div class="comment-user-name">username</div>
-                  <span class="comment-date"> post.created_at </span>
-                </div>
-                <DotsHorizontal class="cursor-pointer" :size="27" />
+                <button class="button-dots">
+                  <DotsHorizontal :size="27" />
+                </button>
               </div>
               <div class="comment-text">comment.text</div>
             </div>
+            <div class="comment-divider"></div>
           </div>
           <LikesSection class="likes-section" />
-          <div class="comment-input-section">
+          <div class="write-comment-wrapper">
             <EmoticonHappyOutline class="emoji-icon" :size="30" />
             <textarea
               ref="textarea"
@@ -176,12 +95,21 @@ const textareaInput = (e) => {
               rows="1"
               class="comment-textarea"
             ></textarea>
-            <button v-if="comment" class="post-button">Post</button>
+            <button
+              v-if="comment"
+              class="post-button"
+              @click="
+                $emit('addComment', { post, user, comment });
+                comment = '';
+              "
+            >
+              Post
+            </button>
           </div>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <style scoped>
@@ -265,7 +193,10 @@ const textareaInput = (e) => {
   display: flex;
   align-items: center;
 }
-
+.button-dots {
+  cursor: pointer;
+  border: none;
+}
 .user-image {
   border-radius: 9999px;
   width: 38px;
@@ -292,7 +223,7 @@ const textareaInput = (e) => {
 }
 
 .comments-section {
-  /* overflow-y: auto; */
+  overflow-y: auto;
   height: calc(100%-170px);
 }
 
@@ -335,10 +266,43 @@ const textareaInput = (e) => {
 .comment-padding {
   padding: 0.75rem;
 }
-.comment {
-  padding: 0.75rem;
+.comment-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
+.comment-wrapper img {
+  border-radius: 9999px;
+  width: 38px;
+  height: 38px;
+}
+.comment-username {
+  margin-left: 1rem;
+  font-weight: 800;
+  font-size: 15px;
+}
+.comment-username span {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 300;
+  color: #374151;
+}
+.comment {
+  display: flex;
+  align-items: center;
+}
+.comment-text {
+  font-size: 13px;
+  padding-left: 55px;
+}
+.comment-divider {
+  padding-bottom: 4rem;
+}
+@media (min-width: 768px) {
+  .comment-divider {
+    display: none;
+  }
+}
 .comment-header {
   display: flex;
   align-items: center;
@@ -374,12 +338,24 @@ const textareaInput = (e) => {
 }
 
 .likes-section {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-right: 1rem;
+  padding-right: 1rem;
   margin-bottom: 0.5rem;
+  margin-top: 100%;
   border-top-width: 1px;
 }
-
+.write-comment-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  position: absolute;
+  bottom: 0;
+  border-width: 1px;
+  width: 100%;
+  background-color: #ffffff;
+  max-height: 200px;
+}
 .comment-input-section {
   position: absolute;
   bottom: 0;
@@ -393,25 +369,24 @@ const textareaInput = (e) => {
 }
 
 .emoji-icon {
-  padding-left: 0.75rem;
-  padding-top: 0.625rem;
+  padding: 0.75rem;
 }
 
 .comment-textarea {
-  width: 100%;
-  border: 0;
+  z-index: 50;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  border-width: 0;
+  width: 100%;
   font-size: 0.875rem;
+  line-height: 1.25rem;
   color: #4b5563;
-  font-size: 1.125rem;
-  outline: none;
-  resize: none;
 }
 
 .post-button {
-  color: #3b82f6;
-  font-weight: 800;
+  border: none;
   padding-right: 1rem;
+  font-weight: 800;
+  color: #2563eb;
 }
 </style>
