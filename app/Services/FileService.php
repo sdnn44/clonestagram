@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Image;
+
 class FileService
 {
     public function updateFile($model, $request, $type)
@@ -23,7 +25,7 @@ class FileService
         $extension = $ext->getClientOriginalExtension();
         $name = time() . '.' . $extension;
         $file->save(public_path() . '/file/' . $name);
-        $model->file = '/file/' . $name;
+        $model->file = '/file/' .$name;
 
         return $model;
     }
